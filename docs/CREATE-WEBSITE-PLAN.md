@@ -21,7 +21,7 @@ Create a small, public, compliance-focused information site for the Causal Drift
 
 ## Key Decisions
 
-- GitHub Pages provides the public HTTPS origin required by Google OAuth production mode.
+- AWS S3, CloudFront, ACM, and Route 53 provide the public HTTPS origin required by Google OAuth production mode.
 - The analytics dashboard and PostgreSQL database remain local/LAN-only.
 - The public site has no cookies, analytics scripts, authentication, or data collection.
 - Privacy disclosures cover YouTube Data API, YouTube Analytics API, Composio, local storage, retention, revocation, deletion, and Google API Limited Use.

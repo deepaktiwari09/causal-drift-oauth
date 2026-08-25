@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: ACM certificate for the Causal Drift Analytics public OAuth information site.
+
+Parameters:
+  DomainName:
+    Type: String
+    Description: Fully qualified public hostname.
+
+  HostedZoneId:
+    Type: String
+    Description: Route 53 public hosted zone ID used for DNS validation.
+
+Resources:
+  SiteCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: !Ref DomainName
+      ValidationMethod: DNS
+      DomainValidationOptions:
+        - DomainName: !Ref DomainName
+          HostedZoneId: !Ref HostedZoneId
+      Tags:
+        - Key: application
+          Value: causal-drift-analytics
+        - Key: purpose
+          Value: oauth-information-site
+
+Outputs:
+  CertificateArn:
+    Description: ACM certificate ARN for the CloudFront distribution.
+    Value: !Ref SiteCertificate
